@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+	<select id="select" resultType="board">
+		select multiboardseq.nextval from dual
+	</select>
+
+	<insert id="insert" parameterType="board">
+		insert into multiboard (num,name, pass, subject, content, file1, regdate,
+		readcnt, ref,reflevel,refstep, boardid) values
+		(#{num},#{name},#{pass},#{subject},#{content},#{file1},sysdate,0
+		,#{ref},#{reflevel},#{refstep},#{boardid})
+	</insert>
+
+	<select id="boardCount" parameterType="String" resultType="int">
+		select count(*) count from multiboard where boardid=#{boardid}
+	</select>
+
+	<select id="list" resultType="board" parameterType="map">
+		select * from ( select rownum rnum ,a.*
+		from (select * from multiboard where boardid = #{boardid}
+		order by ref desc , refstep) a )
+		where rnum between #{start} and #{end}
+	</select>
+
+	<select id="selectOne" parameterType="int" resultType="board">
+		select * from multiboard where num =#{num}
+	</select>
+
+	<update id="readcntadd" parameterType="int">
+		update multiboard set readcnt = readcnt + 1 where num =#{num}
+	</update>
+
+	<update id="refstepadd" parameterType="int">
+		update multiboard set refstep = refstep + 1
+		where ref = #{ref} and refstep > #{refstep}
+
+	</update>
+
+	<update id="update" parameterType="board">
+		update multiboard set name=#{name},subject=#{subject}
+		,content=#{content},file1=#{file1} where num=#{num}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from multiboard where num=#{num}
+	</delete>
+</mapper>
