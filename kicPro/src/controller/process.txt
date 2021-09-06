@@ -1,0 +1,58 @@
+1) ControllerPathMethod   copy
+2) web.xml
+    <servlet-mapping>
+    <servlet-name>controllerPath</servlet-name>
+    <url-pattern>/board/*</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+    <servlet-name>controllerMethod</servlet-name>
+    <servlet-class>controller.ControllerPathMethod</servlet-class>
+    </servlet>    
+    <servlet-mapping>
+    <servlet-name>controllerMethod</servlet-name>
+    <url-pattern>/member/*</url-pattern>
+    </servlet-mapping>
+    
+===============2
+1) 서비스에서 실행 확인
+2) jstl-1.2.jar  ojdbc6.jar WEB-INF/lib 아래 복사 
+3) sqlplus나 sqldeveloper 준비 
+
+4) 
+create table member (
+id varchar(20) primary key, 
+pass varchar(20), 
+name varchar(20), 
+gender number(1), 
+tel varchar(20), 
+email varchar(50), 
+picture varchar(200));
+
+
+
+
+5) webContent/common/head.jsp , footer.jsp 만드세요
+6) view/board
+   biew/member 폴더 만드세요
+7) web.xml
+   <jsp-config>
+   <jsp-property-group>
+   <url-pattern>/view/*</url-pattern>
+   <include-prelude>/common/head.jsp</include-prelude>
+   <include-coda>/common/footer.jsp</include-coda>
+   </jsp-property-group>
+  </jsp-config>
+
+8) /member/list 
+
+list 입니다<br>
+list 입니다<br>
+list 입니다<br>
+list 입니다<br>
+list 입니다<br>
+list 입니다<br>
+list 입니다<br>
+
+9) webContent/image/logo.png
+  

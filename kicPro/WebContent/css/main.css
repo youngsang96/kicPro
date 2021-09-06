@@ -1,0 +1,20 @@
+/* WebContent/css/main.css */
+table {	width : 80%;	border-collapse: collapse;  }
+#board  {	width : 100%;	border-collapse: collapse;  }
+th,td {
+	border : 1px solid #bcbcbc;
+	text-align: center;  	padding : 8px;
+}
+#left {
+	padding-left: 10px;
+	text-align: left; 
+}
+th {    background-color: teal;	color : white;   }
+td {	background-color: #F2F2F2;}
+caption {
+	color : #111111; 	font-size: 20px;
+	background-color: #FFFFFF;
+}
+input[type=text],input[type=password],textarea {
+	width : 100%;
+}
